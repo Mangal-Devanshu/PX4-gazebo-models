@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version='1.9'>
+  <model name='x500_airy'>
+    <self_collide>false</self_collide>
+
+    <!-- Base x500 drone (motors, physics, IMU, GPS) -->
+    <include merge='true'>
+      <uri>x500</uri>
+    </include>
+
+    <!-- Airy LiDAR mounted centered on top of frame -->
+    <include merge='true'>
+      <uri>model://airy_lidar</uri>
+      <pose relative_to="base_link">0 0 0.1 0 0 0</pose>
+    </include>
+
+    <!-- Fixed joint attaching LiDAR to drone body -->
+    <joint name="airy_lidar_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>airy_link</child>
+    </joint>
+
+  </model>
+</sdf>

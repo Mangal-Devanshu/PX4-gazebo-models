@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="airy_lidar">
+    <link name="airy_link">
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.0315 0 0 0</pose>
+        <mass>0.24</mass>
+        <inertia>
+          <ixx>0.000145</ixx><ixy>0</ixy><ixz>0</ixz>
+          <iyy>0.000145</iyy><iyz>0</iyz>
+          <izz>0.000108</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.0315 0 0 0</pose>
+        <geometry>
+          <cylinder><radius>0.030</radius><length>0.063</length></cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <pose>0 0 0.0315 0 0 0</pose>
+        <geometry>
+          <cylinder><radius>0.030</radius><length>0.063</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.2 0.2 0.2 1</diffuse>
+          <specular>0.5 0.5 0.5 1</specular>
+        </material>
+      </visual>
+      <sensor name="airy_lidar" type="gpu_lidar">
+        <gz_frame_id>airy_link</gz_frame_id>
+        <pose>0 0 0.0315 0 0 0</pose>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>96</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>1.5708</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.1</min>
+            <max>60.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <always_on>1</always_on>
+        <visualize>true</visualize>
+      </sensor>
+    </link>
+  </model>
+</sdf>
